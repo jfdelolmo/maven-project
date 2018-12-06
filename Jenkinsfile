@@ -23,19 +23,11 @@ pipeline {
 	        }
 
 	        stage ('Deployments'){
-	            parallel{
-	                stage ('Deploy to Staging'){
-	                    steps {
-	                        sh "scp -i /home/jordi/jenkins/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_dev}/var/lib/tomcat/webapps"
-	                    }
-	                }
-
-	                stage ("Deploy to Production"){
-	                    steps {
-	                       echo 'sh "scp -i /home/jordi/jenkins/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat/webapps"'
-	                    }
-	                }
-	            }
+                stage ('Deploy to Staging'){
+                    steps {
+                        sh "scp -i /home/jordi/jenkins/tomcat-demo.pem **/target/*.war ec2-user@3.16.150.250/var/lib/tomcat/webapps"
+                    }
+                }
 	        }
 	    }
 }
